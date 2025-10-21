@@ -103,6 +103,9 @@ TEST(Perf_Axpy1, Performance) {
         std::vector<double> y_copy = y;
         std::vector<double> z_copy(n);
         axpy(alpha, x_copy, y_copy, z_copy);
+        // Prevent optimization
+        volatile double sum = z_copy[n/2];
+        (void)sum;
     };
 
     // Measure baseline implementation
@@ -111,6 +114,9 @@ TEST(Perf_Axpy1, Performance) {
         std::vector<double> y_copy = y;
         std::vector<double> z_copy(n);
         axpy_baseline(alpha, x_copy, y_copy, z_copy);
+        // Prevent optimization
+        volatile double sum = z_copy[n/2];
+        (void)sum;
     };
 
     // Assert performance within 1.5x of baseline

@@ -88,6 +88,9 @@ TEST(Perf_Ps1, Performance) {
         std::vector<double> data_copy = test_data;
         std::vector<double> output(n);
         prefix_sum(data_copy, output);
+        // Prevent optimization
+        volatile double sum = output[n/2];
+        (void)sum;
     };
 
     // Measure baseline implementation
@@ -95,6 +98,9 @@ TEST(Perf_Ps1, Performance) {
         std::vector<double> data_copy = test_data;
         std::vector<double> output(n);
         prefix_sum_baseline(data_copy, output);
+        // Prevent optimization
+        volatile double sum = output[n/2];
+        (void)sum;
     };
 
     // Assert performance within 1.5x of baseline

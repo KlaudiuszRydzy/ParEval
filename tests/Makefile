@@ -2,7 +2,7 @@
 # Adapted from ParEval's build system
 
 CXX = g++
-CXXFLAGS = -std=c++17 -O3 -Wall -Wextra
+CXXFLAGS = -std=c++17 -O2 -Wall -Wextra
 INCLUDES = -I.. -I../perf_tasks/_templates
 
 # Google Test flags (installed via Homebrew)
